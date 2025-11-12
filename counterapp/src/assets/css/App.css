@@ -1,0 +1,31 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 20px;
+    flex-wrap: wrap;
+    background-color: rgb(150, 209, 189);
+}
+
+button{
+    background-color: rgb(231, 32, 32);
+    height: 45px;
+    width: fit-content;
+    border: none;
+    border-radius: 14px;
+    padding: 0px 20px 0px 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#error {
+    height: 30px;       /* << reserves space even when empty */
+    background-color: rgb(150, 209, 189);
+    text-align: center;
+    padding-top: 10px;
+    color: red;
+    font-weight: 800;
+}
