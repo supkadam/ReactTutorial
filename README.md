@@ -428,6 +428,9 @@ export default User;
 ### Eg. (see Github.jsx and main.jsx under react_router5 project)
 
 
+### Context API - (to handle prop drilling situations)
+
+
 
 
 
