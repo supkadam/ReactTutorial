@@ -214,3 +214,230 @@ Think of `useCallback` as saying:
 > values change**. Otherwise, reuse the old one."
 
 
+---------------------------------------------------------------------------------
+
+# `useId` Hook
+
+## Overview
+`useId` is a React Hook (introduced in React 18) that generates **stable, unique IDs** for components.  
+It is mainly used for **accessibility** and **form elements**, especially in apps using **server-side rendering (SSR)**.
+
+---
+
+## When to Use
+- Linking `<label>` and `<input>`
+- Accessibility attributes (`aria-describedby`, `aria-labelledby`)
+- Reusable components that need unique IDs
+
+---
+
+## When NOT to Use
+- As a `key` in lists
+- As a database or persistent ID
+
+---
+
+## Example
+
+```jsx
+import { useId } from "react";
+
+function LoginForm() {
+  const id = useId();
+
+  return (
+    <form>
+      <label htmlFor={`${id}-email`}>Email</label>
+      <input id={`${id}-email`} type="email" />
+
+      <label htmlFor={`${id}-password`}>Password</label>
+      <input id={`${id}-password`} type="password" />
+    </form>
+  );
+}
+
+export default LoginForm;
+```
+------------------------------------------------------------------
+
+## Export all components from one single file i.e index.js 
+
+1. create index.js file inside src/components folder
+2. inside index.js import any component like below.
+```js
+import InputBox from "./InputBox";
+
+export {InputBox};
+```
+3. Now in App.jsx file import it as below
+```js
+  import { InputBox } from './components'
+```
+
+
+## React Router DOM
+
+### To install 
+- Go inside project folder
+- Then hit command ```npm install react-router-dom```
+
+### Link Tag in React
+
+- The `Link` component in React is used for **client-side navigation** in applications that use **React Router**.
+- It allows navigation between pages without refreshing the browser, improving performance and user experience.
+
+### Importing Link
+
+```js
+import { Link } from "react-router-dom";
+```
+
+### Basic Usage
+
+```jsx
+<Link to="/about">About</Link>
+```
+
+### Example
+```jsx
+import { Link } from "react-router-dom";
+
+function Navbar() {
+  return (
+    <nav>
+      <Link to="/">Home</Link>
+      <Link to="/about">About</Link>
+      <Link to="/contact">Contact</Link>
+    </nav>
+  );
+}
+
+export default Navbar;
+```
+
+### NavLink Tag in React
+
+- `NavLink` is a special version of `Link` from **react-router-dom** that allows styling based on whether the link matches the current URL.
+
+## Example
+
+```jsx
+import { NavLink } from "react-router-dom";
+
+<NavLink
+  to="/home"
+  className={({ isActive }) => (isActive ? "active" : "")}
+>
+  Home
+</NavLink>
+```
+
+## Active Styling with style
+```jsx
+<NavLink
+  to="/profile"
+  style={({ isActive }) => ({
+    color: isActive ? "green" : "black",
+  })}
+>
+  Profile
+</NavLink>
+```
+
+## Exact Route Matching (end)
+```jsx
+<NavLink to="/" end>
+  Home
+</NavLink>
+```
+Note - Using end prevents / from being active on nested routes like /about.
+
+## Route States
+
+```jsx
+<NavLink
+  to="/dashboard"
+  className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "active" : ""
+  }
+>
+  Dashboard
+</NavLink>
+
+```
+- isActive: true when route matches URL
+- isPending: true while route is loading
+
+## NavLink vs Link
+
+- Link: basic navigation
+- NavLink: navigation with active state support
+
+## There are 2 ways to create routes
+- shown in `main.jsx` file under project `react_router5`
+
+## createBrowserRouter (React Router)
+
+`createBrowserRouter` is a modern React Router API used to define application routes using a configuration-based approach. It supports data loading, mutations, and error handling.
+
+## To access parameters from the URL
+# useParams 
+- `useParams` is a React Router hook used to access **dynamic URL parameters** from the current route.
+
+# Eg.
+```jsx.  
+main.jsx
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/' element={<Layout />}>
+      
+      <Route path='user/:userid' element={<User />} />
+    </Route>
+  )
+)
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <RouterProvider router={router}/>
+  </StrictMode>,
+)
+
+```
+
+```jsx.  
+User.jsx
+
+import React from "react";
+import { useParams } from "react-router-dom";
+
+function User() {
+  const { userid } = useParams();
+  return (
+    <div className="bg-gray-600 text-white text-3xl p-4">User: {userid}</div>
+  );
+}
+
+export default User;
+```
+
+## useLoaderData
+
+- `useLoaderData` is a React Router hook used to access data returned by a route `loader` function.
+
+### Eg. (see Github.jsx and main.jsx under react_router5 project)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
